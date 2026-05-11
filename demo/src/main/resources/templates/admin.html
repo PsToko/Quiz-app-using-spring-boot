@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" th:href="@{/css/quiz.css}">
+</head>
+<body>
+
+<h2>Admin Panel</h2>
+<a href="/logout">Logout</a>
+<a href="/admin/add">➕ Add Question</a>
+
+<hr>
+
+<div th:each="q : ${questions}" style="margin-bottom: 15px; padding: 10px; background: white; border-radius: 8px;">
+
+    <!-- QUESTION -->
+    <p>
+        <strong th:text="${q.text}"></strong>
+    </p>
+
+    <!-- CATEGORY -->
+    <p>
+        Category:
+        <span th:text="${q.category != null ? q.category.name : 'No Category'}"></span>
+    </p>
+
+    <a th:href="@{'/admin/edit/' + ${q.id}}">
+        ✏ Edit
+    </a>|
+
+    <a th:href="@{'/admin/delete/' + ${q.id}}"
+       onclick="return confirm('Delete this question?')">
+        ❌ Delete
+    </a>
+
+</div>
+
+</body>
+</html>

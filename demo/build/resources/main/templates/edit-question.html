@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Question</title>
+    <link rel="stylesheet" th:href="@{/css/quiz.css}">
+</head>
+<body>
+
+<h2>Edit Question</h2>
+
+<form action="/admin/edit" method="post">
+
+    <input type="hidden"
+           name="id"
+           th:value="${question.id}">
+
+    <input type="text"
+           name="text"
+           th:value="${question.text}">
+
+    <p>Category</p>
+
+    <select name="categoryId">
+        <option th:each="c : ${categories}"
+                th:value="${c.id}"
+                th:text="${c.name}"
+                th:selected="${c.id == question.category.id}">
+        </option>
+    </select>
+
+    <h3>Options</h3>
+
+    <input type="text"
+           name="opt1"
+           th:value="${question.options[0].text}">
+
+    <input type="text"
+           name="opt2"
+           th:value="${question.options[1].text}">
+
+    <input type="text"
+           name="opt3"
+           th:value="${question.options[2].text}">
+
+    <input type="text"
+           name="opt4"
+           th:value="${question.options[3].text}">
+
+    <p>Correct option (0-3)</p>
+    <input type="number"
+           name="correctIndex"
+           min="0"
+           max="3">
+
+    <button type="submit">
+        Save Changes
+    </button>
+
+</form>
+
+</body>
+</html>

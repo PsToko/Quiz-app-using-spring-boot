@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Question</title>
+  <link rel="stylesheet" th:href="@{/css/quiz.css}">
+</head>
+<body>
+
+<h2>Add Question</h2>
+
+<form action="/admin/add" method="post">
+
+  <!-- QUESTION -->
+  <input type="text" name="text" placeholder="Question" required>
+
+  <!-- OPTIONS -->
+  <input type="text" name="opt1" placeholder="Option 1" required>
+  <input type="text" name="opt2" placeholder="Option 2" required>
+  <input type="text" name="opt3" placeholder="Option 3" required>
+  <input type="text" name="opt4" placeholder="Option 4" required>
+
+  <!-- CORRECT -->
+  <p>Correct Option (0-3)</p>
+  <input type="number" name="correctIndex" min="0" max="3" required>
+
+  <!-- ⭐ CATEGORY DROPDOWN -->
+  <p>Category</p>
+  <select name="categoryId" required>
+    <option value="" disabled selected>-- Select Category --</option>
+
+    <option th:each="cat : ${categories}"
+            th:value="${cat.id}"
+            th:text="${cat.name}">
+    </option>
+  </select>
+
+  <br><br>
+
+  <button type="submit">Save</button>
+
+</form>
+
+</body>
+</html>
